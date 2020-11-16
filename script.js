@@ -80,28 +80,27 @@ creditCardNum.addEventListener("input", function(event) {
 
 carYear.addEventListener("input", function(event) {
     
-
-    function carValid() { 
-        let dateToday = new Date() .getFullYear()
+        let dateToday = new Date().getFullYear()
         let invalidYear = 1990
-        if (carYear.value < invalidYear || carYear.value > dateToday) {
+        if (carYear.value > dateToday || carYear.value < invalidYear) {
         carYear.setCustomValidity('invalid Car Year')
         }
         else {
             carYear.setCustomValidity('')
         }
     })
-}
+
 
 // parking date start 
 
-dateParking.addEventListener('input', function(event) {
+dateParking.addEventListener('change', function(event) {
     let today = new Date() .getFullYear()
- {
-    if (dateParking < today)
-    dateParking.setCustomValidity('Invalid Date')
- } else {
-     dateParking.setCustomValidity('')
+    
+    if (dateParking < today) {
+        dateParking.setCustomValidity('Invalid Date')
+    } 
+    else {
+        dateParking.setCustomValidity('')
  }
 
 
