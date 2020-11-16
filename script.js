@@ -2,13 +2,21 @@ console.log('Add validation!');
 
 
 const form = document.querySelector('#parking-form')
+const creditCardNum = document.querySelector('#credit-card')
+const validDate = document.querySelector('#start-date')
+const carYear = document.querySelector('#car-year')
+const dateParking = document.querySelector('#start-date')
+const expirationDate = document.querySelector('#expiration')
 
 form.addEventListener('submit', function (event) {
     event.preventDefault
     calculateCost()
     validate()
+    carValid()
     
 })
+
+//cost per day
 
 function calculateCost() {
     let numberOFDays = document.querySelector('#days').value
@@ -18,30 +26,6 @@ function calculateCost() {
     display.innerHTML = result
 }
 
-// const months = [
-//     'January',
-//     'February',
-//     'March',
-//     'April',
-//     'May',
-//     'June',
-//     'July',
-//     'August',
-//     'September',
-//     'October',
-//     'November',
-//     'December'
-//   ]
-
-// const days = [
-//     'Sun',
-//     'Mon',
-//     'Tue',
-//     'Wed',
-//     'Thu',
-//     'Fri',
-//     'Sat'
-//   ]
     
     
     
@@ -50,12 +34,15 @@ function calculateCost() {
 
 // })
 
-function validate() {
-    let creditCardNum = document.querySelector('#credit-card').value 
-    validateCardNumber(creditCardNum)
+// function validate() {
+//     let creditCardNum = document.querySelector('#credit-card').value 
+//     validateCardNumber(creditCardNum)
+//     if (validateCardNumber(creditCardNum.value)===false) {
+//      creditCardNum.setCustomValidity("Invalid Card Number")
     
-}
+// }
 
+//credit card
 
 function validateCardNumber(number) {
     var regex = new RegExp("^[0-9]{16}$");
@@ -80,3 +67,55 @@ function luhnCheck(val) {
     return (sum % 10) == 0;
 }
 
+creditCardNum.addEventListener("input", function(event) {
+    if (validateCardNumber(creditCardNum.value)===false) {
+        creditCardNum.setCustomValidity("Invalid Card Number")
+    }
+    else {
+        creditCardNum.setCustomValidity('')
+    }
+})
+
+// car year start
+
+carYear.addEventListener("input", function(event) {
+    
+
+    function carValid() { 
+        let dateToday = new Date() .getFullYear()
+        let invalidYear = 1990
+        if (carYear.value < invalidYear || carYear.value > dateToday) {
+        carYear.setCustomValidity('invalid Car Year')
+        }
+        else {
+            carYear.setCustomValidity('')
+        }
+    })
+}
+
+// parking date start 
+
+dateParking.addEventListener('input', function(event) {
+    let today = new Date() .getFullYear()
+ {
+    if (dateParking < today)
+    dateParking.setCustomValidity('Invalid Date')
+ } else {
+     dateParking.setCustomValidity('')
+ }
+
+
+})
+
+// Expiration date start
+
+expirationDate.addEventListener('input', function(event) {
+    let dateToday = new Date() .getFullYear()
+
+    if (expirationDate.value < dateToday) {
+        expirationDate.setCustomValidity('invalid Expiration Date')
+    }
+    else {
+        expirationDate.setCustomValidity('')
+    }
+})
