@@ -13,7 +13,7 @@ form.addEventListener('submit', function (event) {
     calculateCost()
     validate()
     carValid()
-    
+
 })
 
 //cost per day
@@ -26,9 +26,9 @@ function calculateCost() {
     display.innerHTML = result
 }
 
-    
-    
-    
+
+
+
 //     const display = document.querySelector('#days-field')
 //     display.innerHTML = event.target.innerHTML
 
@@ -39,7 +39,7 @@ function calculateCost() {
 //     validateCardNumber(creditCardNum)
 //     if (validateCardNumber(creditCardNum.value)===false) {
 //      creditCardNum.setCustomValidity("Invalid Card Number")
-    
+
 // }
 
 //credit card
@@ -67,54 +67,51 @@ function luhnCheck(val) {
     return (sum % 10) == 0;
 }
 
-creditCardNum.addEventListener("input", function(event) {
-    if (validateCardNumber(creditCardNum.value)===false) {
+creditCardNum.addEventListener("input", function (event) {
+    if (validateCardNumber(creditCardNum.value) === false) {
         creditCardNum.setCustomValidity("Invalid Card Number")
-    }
-    else {
+    } else {
         creditCardNum.setCustomValidity('')
     }
 })
 
 // car year start
 
-carYear.addEventListener("input", function(event) {
-    
-        let dateToday = new Date().getFullYear()
-        let invalidYear = 1990
-        if (carYear.value > dateToday || carYear.value < invalidYear) {
+carYear.addEventListener("input", function (event) {
+
+    let dateToday = new Date().getFullYear()
+    let invalidYear = 1990
+    if (carYear.value > dateToday || carYear.value < invalidYear) {
         carYear.setCustomValidity('invalid Car Year')
-        }
-        else {
-            carYear.setCustomValidity('')
-        }
-    })
+    } else {
+        carYear.setCustomValidity('')
+    }
+})
 
 
 // parking date start 
 
-dateParking.addEventListener('change', function(event) {
-    let today = new Date() .getFullYear()
-    
-    if (dateParking < today) {
+dateParking.addEventListener('change', function (event) {
+    let today = new Date()
+    let dateParking = new Date(dateParking.value)
+
+    if (dateParking <= today) {
         dateParking.setCustomValidity('Invalid Date')
-    } 
-    else {
+    } else {
         dateParking.setCustomValidity('')
- }
+    }
 
 
 })
 
 // Expiration date start
 
-expirationDate.addEventListener('input', function(event) {
-    let dateToday = new Date() .getFullYear()
+expirationDate.addEventListener('input', function (event) {
+    let dateToday = new Date().getFullYear()
 
     if (expirationDate.value < dateToday) {
         expirationDate.setCustomValidity('invalid Expiration Date')
-    }
-    else {
+    } else {
         expirationDate.setCustomValidity('')
     }
 })
